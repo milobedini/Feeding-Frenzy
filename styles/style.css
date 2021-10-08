@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+body {
+  text-align: center;
+  font-family: "Libre Franklin", sans-serif;
+  /* font-family: "IBM Plex Sans", sans-serif; */
+}
+h2 {
+  display: flex;
+  justify-content: center;
+  gap: 1.5em;
+  font-size: 1.2em;
+  align-items: baseline;
+}
+h2 button {
+  background: cornflowerblue;
+  flex-basis: 10em;
+  border-radius: 100%;
+  font-weight: bold;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(25, 1fr);
+  grid-template-rows: repeat(25, 1fr);
+  grid-auto-rows: 1fr;
+  height: 80vh;
+  width: 95vw;
+  background-image: url("./ocean.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.grid div {
+  border: 1px solid black;
+}
+.sky {
+  background-image: url("./sky.png");
+  background-size: cover;
+}
+footer p {
+  font-style: italic;
+  font-family: "IBM Plex Sans", sans-serif;
+  text-decoration: underline;
+}
+.player::before {
+  content: url("./fish1.png");
+  display: block;
+  height: 80%;
+  width: 60%;
+}
