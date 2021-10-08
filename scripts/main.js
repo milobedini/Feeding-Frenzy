@@ -85,13 +85,16 @@ const tryMovePlayer = (changeInIndex, isIndexAtLimit) => {
     console.log("fish net encountered!")
     return
   }
+  if (newCell.classList.contains("plankton")) {
+    newCell.classList.remove("plankton")
+    playerScore += 10
+  }
   // insert side effects for if new cell class list contains plankton, fish or sharks
   // plankton: add 10 to current points, fish add 50
   // shark: minus one from lives and return index to playerStartIndex
   allTheCells[playerIndex].classList.remove("player")
   newCell.classList.add("player")
   //   Below just to test player score variable, currently +1 on every move.
-  playerScore += 1
   playerScoreText.innerText = playerScore
   playerIndex = newIndex
 }
@@ -113,3 +116,17 @@ document.addEventListener("keydown", function (e) {
       break
   }
 })
+// prevent default browser action to stop arrows from scrolling the page
+window.addEventListener(
+  "keydown",
+  function (e) {
+    if (
+      ["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(
+        e.code
+      ) > -1
+    ) {
+      e.preventDefault()
+    }
+  },
+  false
+)
