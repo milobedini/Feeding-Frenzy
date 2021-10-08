@@ -21,20 +21,31 @@ h2 button {
   flex-basis: 10em;
   border-radius: 100%;
   font-weight: bold;
+  cursor: pointer;
+  height: 4em;
+  font-size: 1em;
 }
+.game-status {
+  font-size: 0.8em;
+  display: flex;
+  flex-direction: column;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(25, 1fr);
   grid-template-rows: repeat(25, 1fr);
   grid-auto-rows: 1fr;
-  height: 80vh;
-  width: 95vw;
+  height: 700px;
+  width: 1200px;
   background-image: url("./ocean.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
 .grid div {
   border: 1px solid black;
+  max-height: 100%;
+  max-width: 100%;
 }
 .sky {
   background-image: url("./sky.png");
@@ -46,8 +57,21 @@ footer p {
   text-decoration: underline;
 }
 .player::before {
-  content: url("./fish1.png");
+  content: "";
   display: block;
-  height: 80%;
-  width: 60%;
+  height: 90%;
+  width: 90%;
+  background: url("./fish1.png");
+  background-size: 100%;
+  margin: 5%;
+}
+.fish-net::before {
+  content: "";
+  display: block;
+  height: 90%;
+  width: 90%;
+  font-size: 10px;
+  background: url("./fishnet.png");
+  background-size: 100%;
+  margin: 5%;
 }
