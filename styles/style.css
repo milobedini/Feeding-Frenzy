@@ -43,7 +43,7 @@ h2 button {
   background-repeat: no-repeat;
 }
 .grid div {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   max-height: 100%;
   max-width: 100%;
 }
@@ -70,8 +70,16 @@ footer p {
   display: block;
   height: 90%;
   width: 90%;
-  font-size: 10px;
   background: url("./fishnet.png");
+  background-size: 100%;
+  margin: 5%;
+}
+.plankton::before {
+  content: "";
+  display: block;
+  height: 90%;
+  width: 90%;
+  background: url("./plankton.png");
   background-size: 100%;
   margin: 5%;
 }
