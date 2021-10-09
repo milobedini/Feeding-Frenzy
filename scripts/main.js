@@ -17,6 +17,7 @@ const planktonQuantity = 80
 // initialise the player
 const playerStartIndex = 612
 let playerIndex = playerStartIndex
+let sharkIndex
 
 console.log(playerIndex)
 allTheCells[playerIndex].classList.add("player")
@@ -53,6 +54,40 @@ for (let i = 0; i < planktonIndex.length; i++) {
 }
 
 // functions
+const generateShark = () => {
+  // they can spawn at row 0, 24 etc. but not final row (600) so max is 576
+  // create random number (multiples of 24)
+  sharkIndex = Math.floor(Math.random() * 25) * 25
+  console.log(sharkIndex)
+  if (sharkIndex < 74 || sharkIndex === 600) {
+    console.log("shark cannot be spawned here!")
+    return
+  }
+  allTheCells[sharkIndex].classList.add("shark")
+}
+generateShark()
+// currently can only generate one shark due to index tracking issue. Need a for each somewhere.
+
+const sharkSwimsRight = () => {
+  const isSharkOnRightEdge = (sharkIndex) => (sharkIndex + 1) % 25 === 0
+  tryMoveShark(1, isSharkOnRightEdge)
+}
+const tryMoveShark = (changeInIndex, isIndexAtLimit) => {
+  const newSharkIndex = sharkIndex + changeInIndex
+  const newCell = allTheCells[newSharkIndex]
+  if (isIndexAtLimit(sharkIndex)) {
+    console.log("shark should now disappear")
+    allTheCells[sharkIndex].classList.remove("shark")
+    return
+  }
+  allTheCells[sharkIndex].classList.remove("shark")
+  newCell.classList.add("shark")
+  sharkIndex = newSharkIndex
+}
+setInterval(sharkSwimsRight, 1000)
+
+// same process for the fish
+
 const handleArrowUp = () => {
   const isPlayerOnTopEdge = (playerIndex) => playerIndex < 25
   tryMovePlayer(-25, isPlayerOnTopEdge)
