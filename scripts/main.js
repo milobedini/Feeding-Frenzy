@@ -18,6 +18,7 @@ const planktonQuantity = 80
 const playerStartIndex = 612
 let playerIndex = playerStartIndex
 let sharkIndex
+let allTheSharks = []
 
 console.log(playerIndex)
 allTheCells[playerIndex].classList.add("player")
@@ -54,38 +55,37 @@ for (let i = 0; i < planktonIndex.length; i++) {
 }
 
 // functions
-const generateShark = () => {
-  // they can spawn at row 0, 24 etc. but not final row (600) so max is 576
-  // create random number (multiples of 24)
-  sharkIndex = Math.floor(Math.random() * 25) * 25
-  console.log(sharkIndex)
-  if (sharkIndex < 74 || sharkIndex === 600) {
-    console.log("shark cannot be spawned here!")
-    return
+const handleSharks = () => {
+  const generateSharks = () => {
+    // they can spawn at row 0, 24 etc. but not final row (600) so max is 576
+    // create random number (multiples of 24)
+    sharkIndex = Math.floor(Math.random() * 25) * 25
+    console.log(sharkIndex)
+    if (sharkIndex < 74 || sharkIndex === 600) {
+      console.log("shark cannot be spawned here!")
+      return
+    }
+    allTheCells[sharkIndex].classList.add("shark")
+    allTheSharks.push(sharkIndex)
+    console.log(sharkIndex)
   }
-  allTheCells[sharkIndex].classList.add("shark")
-}
-generateShark()
-// currently can only generate one shark due to index tracking issue. Need a for each somewhere.
-
-const sharkSwimsRight = () => {
-  const isSharkOnRightEdge = (sharkIndex) => (sharkIndex + 1) % 25 === 0
-  tryMoveShark(1, isSharkOnRightEdge)
-}
-const tryMoveShark = (changeInIndex, isIndexAtLimit) => {
-  const newSharkIndex = sharkIndex + changeInIndex
-  const newCell = allTheCells[newSharkIndex]
-  if (isIndexAtLimit(sharkIndex)) {
-    console.log("shark should now disappear")
-    allTheCells[sharkIndex].classList.remove("shark")
-    return
+  // Updates all the sharks to all move right
+  let allSharksMoved = allTheSharks.map((shark) => shark + 1)
+  const updateSharks = () => {
+    for (let i = 0; i < allSharksMoved.length; i++) {
+      let oldCell = allTheSharks[i]
+      console.log(oldCell)
+      let newCell = allSharksMoved[i]
+      console.log(newCell)
+      allTheCells[oldCell].classList.remove("shark")
+      allTheCells[newCell].classList.add("shark")
+      console.log(oldCell, newCell)
+    }
   }
-  allTheCells[sharkIndex].classList.remove("shark")
-  newCell.classList.add("shark")
-  sharkIndex = newSharkIndex
+  generateSharks()
+  updateSharks()
 }
-setInterval(sharkSwimsRight, 1000)
-
+setInterval(handleSharks, 1000)
 // same process for the fish
 
 const handleArrowUp = () => {
