@@ -59,31 +59,37 @@ for (let i = 0; i < planktonIndex.length; i++) {
 const generateSharks = () => {
   // they can spawn at row 0, 24 etc. but not final row (600) so max is 576
   // create random number (multiples of 24)
+  if (allTheSharks.length > 50) {
+    allTheSharks = []
+  }
   sharkIndex = Math.floor(Math.random() * 25) * 25
   console.log(sharkIndex)
   if (sharkIndex < 74 || sharkIndex === 600) {
     console.log("shark cannot be spawned here!")
     return
   }
+
   allTheCells[sharkIndex].classList.add("shark")
   allTheSharks.push(sharkIndex)
-  console.log(sharkIndex)
+  console.log(allTheSharks)
 }
-// Updates all the sharks to all move right
-setInterval(generateSharks, 1000)
-
-const moveShark = setInterval(() => {
-  console.log("shark")
-  allTheCells.map((cell) => {
-    console.log(cell)
-    if (cell.classList.contains("shark")) {
-      let index = allTheCells.indexOf(cell)
-      console.log(index)
-      allTheCells[index + 1].classList.add("shark")
-      allTheCells[index].classList.remove("shark")
+const moveSharks = () => {
+  for (let i = 0; i < allTheSharks.length; i++) {
+    if (allTheSharks[i] >= 625) {
+      return
     }
-  })
-}, 1000)
+    allTheCells[allTheSharks[i]].classList.remove("shark")
+  }
+  allTheSharks = allTheSharks.map((shark) => shark + 1)
+  console.log(allTheSharks)
+
+  for (let i = 0; i < allTheSharks.length; i++) {
+    allTheCells[allTheSharks[i]].classList.add("shark")
+  }
+}
+setInterval(generateSharks, 2000)
+setInterval(moveSharks, 1000)
+console.log(allTheSharks)
 
 // same process for the fish
 
