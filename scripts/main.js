@@ -1,6 +1,6 @@
 // grab html elements as variables
 const grid = document.querySelector(".grid")
-const allTheCells = document.querySelectorAll(".grid div")
+const allTheCells = Array.from(document.querySelectorAll(".grid div"))
 console.log(allTheCells)
 let playerScoreText = document.getElementById("player-score")
 let livesRemainingText = document.getElementById("lives")
@@ -55,37 +55,36 @@ for (let i = 0; i < planktonIndex.length; i++) {
 }
 
 // functions
-const handleSharks = () => {
-  const generateSharks = () => {
-    // they can spawn at row 0, 24 etc. but not final row (600) so max is 576
-    // create random number (multiples of 24)
-    sharkIndex = Math.floor(Math.random() * 25) * 25
-    console.log(sharkIndex)
-    if (sharkIndex < 74 || sharkIndex === 600) {
-      console.log("shark cannot be spawned here!")
-      return
-    }
-    allTheCells[sharkIndex].classList.add("shark")
-    allTheSharks.push(sharkIndex)
-    console.log(sharkIndex)
+
+const generateSharks = () => {
+  // they can spawn at row 0, 24 etc. but not final row (600) so max is 576
+  // create random number (multiples of 24)
+  sharkIndex = Math.floor(Math.random() * 25) * 25
+  console.log(sharkIndex)
+  if (sharkIndex < 74 || sharkIndex === 600) {
+    console.log("shark cannot be spawned here!")
+    return
   }
-  // Updates all the sharks to all move right
-  let allSharksMoved = allTheSharks.map((shark) => shark + 1)
-  const updateSharks = () => {
-    for (let i = 0; i < allSharksMoved.length; i++) {
-      let oldCell = allTheSharks[i]
-      console.log(oldCell)
-      let newCell = allSharksMoved[i]
-      console.log(newCell)
-      allTheCells[oldCell].classList.remove("shark")
-      allTheCells[newCell].classList.add("shark")
-      console.log(oldCell, newCell)
-    }
-  }
-  generateSharks()
-  updateSharks()
+  allTheCells[sharkIndex].classList.add("shark")
+  allTheSharks.push(sharkIndex)
+  console.log(sharkIndex)
 }
-setInterval(handleSharks, 1000)
+// Updates all the sharks to all move right
+setInterval(generateSharks, 1000)
+
+const moveShark = setInterval(() => {
+  console.log("shark")
+  allTheCells.map((cell) => {
+    console.log(cell)
+    if (cell.classList.contains("shark")) {
+      let index = allTheCells.indexOf(cell)
+      console.log(index)
+      allTheCells[index + 1].classList.add("shark")
+      allTheCells[index].classList.remove("shark")
+    }
+  })
+}, 1000)
+
 // same process for the fish
 
 const handleArrowUp = () => {
