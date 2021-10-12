@@ -75,6 +75,7 @@ h2 button {
   /* border: 1px solid black; */
   max-height: 100%;
   max-width: 100%;
+  border: 1px solid black;
 }
 .sky {
   background-image: url("./sky.png");
@@ -129,5 +130,8 @@ footer p {
   background: url("./flying.png");
   background-size: 100%;
   margin: 5%;
+}
+.sky {
+  background-image: url("./2850047.svg");
 }
 /* Plankton and flying fish are true png's but player fish and shark are not. */
