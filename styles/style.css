@@ -66,7 +66,7 @@ h2 button {
   grid-auto-rows: 1fr;
   height: 700px;
   width: 1200px;
-  background-image: url("./ocean.png");
+  background-image: url("./ocean-background.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
   border: 3px solid gold;
@@ -75,12 +75,8 @@ h2 button {
   /* border: 1px solid black; */
   max-height: 100%;
   max-width: 100%;
-  border: 1px solid black;
 }
-.sky {
-  background-image: url("./sky.png");
-  background-size: cover;
-}
+
 footer p {
   font-style: italic;
   font-family: "IBM Plex Sans", sans-serif;
@@ -89,20 +85,20 @@ footer p {
 .player::before {
   content: "";
   display: block;
-  height: 90%;
-  width: 90%;
-  background: url("./fish1.png");
-  background-size: 100%;
-  margin: 5%;
+  height: 300%;
+  width: 100%;
+  background: url("./player-fish.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .fish-net::before {
   content: "";
   display: block;
-  height: 90%;
-  width: 90%;
-  background: url("./fishnet.png");
-  background-size: 100%;
-  margin: 5%;
+  height: 100%;
+  width: 100%;
+  background: url("./fishing-net.png");
+  background-size: contain;
+  margin: 0;
 }
 .plankton::before {
   content: "";
@@ -112,24 +108,26 @@ footer p {
   background: url("./plankton.png");
   background-size: 100%;
   margin: 5%;
+  background-position: center;
 }
 .shark::before {
   content: "";
   display: block;
-  height: 100%;
+  height: 90%;
   width: 100%;
-  background: url("./shark.png");
+  background: url("./shark\(1\).png");
   background-size: 100%;
-  margin: 5%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .fish::before {
   content: "";
   display: block;
   height: 100%;
   width: 100%;
-  background: url("./flying.png");
-  background-size: 100%;
-  margin: 5%;
+  background: url("./clown-fish.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .sky {
   background-image: url("./2850047.svg");

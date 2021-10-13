@@ -21,20 +21,6 @@ const createCells = () => {
 }
 createCells()
 
-// create the sky
-const sky = {
-  skyCells: [],
-  createSky() {
-    for (let y = 0; y < 3; y++) {
-      for (let x = 0; x < width; x++) {
-        const skyDiv = cells[y][x]
-        skyDiv.classList.add("sky")
-        this.skyCells.push(skyDiv)
-      }
-    }
-  },
-}
-
 // initialise the player
 let playerDiv = cells[24][12]
 playerDiv.classList.add("player")
@@ -88,7 +74,7 @@ const plankton = {
         const y = player.positionY
         const x = player.positionX
         cells[player.positionY][player.positionX].classList.remove("plankton")
-        player.score += 50
+        player.score += 10
         refresh()
       }
     })
@@ -256,8 +242,9 @@ class Fish {
       const x = player.positionX
       const y = player.positionY
       cells[y][x].classList.remove("fish")
+      // make sure that the fish does not reappear when the player moves away.
       this.positionX = null
-      player.score = player.score + 50
+      player.score = player.score += 50
       refresh()
     }
   }
