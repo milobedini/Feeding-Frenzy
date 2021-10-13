@@ -25,6 +25,13 @@ const createCells = () => {
 createCells()
 
 // create space for endgame message to appear
+// add some audio
+const audio = document.querySelector("audio")
+function oceanSound() {
+  audio.src = "../styles/ocean-sound.wav"
+  audio.play()
+}
+startButton.addEventListener("click", oceanSound)
 
 // initialise the player
 initialisePlayer = () => {
@@ -302,9 +309,8 @@ const playerWinsMedium = () => {
     refresh()
     grid.classList.add("hidden")
     levelOneDone.classList.remove("hidden")
-
-    // update p text for win message
-    // play some music
+    audio.pause()
+    audio.currentTime = 0
   }
 }
 // reset the page option
