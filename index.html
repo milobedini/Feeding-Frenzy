@@ -27,6 +27,38 @@
       <div class="welcome-page">
         <h2>Please press start to begin!</h2>
       </div>
+      <div class="level-one-done hidden">
+        <h3>Congrats - you made it!</h3>
+        <div class="level-end-container">
+          <p>
+            You cruised through level 1. There are two more levels if you wish
+            to continue?
+          </p>
+          <button id="yes-to-level-two" class="yes">YES</button
+          ><button id="no-to-level-two" class="no">NO</button>
+        </div>
+      </div>
+      <div class="level-two-done hidden">
+        <h3>Congrats - level 2 ✅!</h3>
+        <div class="level-end-container">
+          <p>Would you like to proceed to the final level?</p>
+          <button id="yes-to-level-three" class="yes">YES</button
+          ><button id="no-to-level-three" class="no">NO</button>
+        </div>
+      </div>
+      <div class="game-completed hidden">
+        <h3>
+          Awesome! You completed Feeding Frenzy.
+          <h6>Restart if you want to go again!</h6>
+        </h3>
+        <div class="game-end-container">
+          <p>Milo Bedini</p>
+          <ul class="social">
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">Twitter</a></li>
+          </ul>
+        </div>
+      </div>
       <section class="info-text">
         <p>
           Use your arrow keys to navigate the ocean and hunt down tasty morsels.
@@ -36,7 +68,6 @@
     </main>
     <footer>
       <p>Milo Bedini</p>
-      <!-- Insert social etc. here -->
     </footer>
     <audio></audio>
     <script src="./scripts/main.js"></script>

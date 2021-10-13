@@ -27,11 +27,9 @@ header {
 h1 {
   padding-left: 100px;
 }
-
-#start-button,
-#restart-button {
-  background: rgb(26, 196, 26);
-  border: 2px solid black;
+button {
+  background: yellow;
+  border: 2px solid white;
   flex-basis: 10em;
   border-radius: 100%;
   font-weight: bold;
@@ -39,6 +37,12 @@ h1 {
   font-size: 1em;
   width: 300px;
   height: 50px;
+}
+
+#start-button,
+#restart-button {
+  background: rgb(26, 196, 26);
+  border: 2px solid black;
 }
 #restart-button {
   background: yellow;
@@ -142,7 +146,8 @@ footer p {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.welcome-page {
+.welcome-page,
+.level-one-done {
   display: flex;
   flex-direction: column;
   height: 600px;
@@ -153,6 +158,31 @@ footer p {
   color: gold;
   font-size: 40px;
   background: black;
+}
+.level-end-container {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  align-items: center;
+}
+.level-end-container p {
+  font-size: 20px;
+  width: 25%;
+}
+.yes,
+.no {
+  background: rgb(26, 196, 26);
+  border: 2px solid white;
+  flex-basis: 5em;
+  border-radius: 100%;
+  /* font-weight: bold; */
+  cursor: pointer;
+  font-size: 0.8em;
+  /* width: 300px;
+  height: 50px; */
+}
+.no {
+  background: rgb(182, 39, 39);
 }
 .end-message {
   border: 1px solid black;

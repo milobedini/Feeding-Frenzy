@@ -8,6 +8,8 @@ const score = document.getElementById("player-score")
 const lives = document.getElementById("lives")
 const startButton = document.getElementById("start-button")
 const restartButton = document.getElementById("restart-button")
+const welcomePage = document.querySelector(".welcome-page")
+const levelOneDone = document.querySelector(".level-one-done")
 // need to create and add restart button
 
 const createCells = () => {
@@ -297,7 +299,9 @@ class Fish {
 // Create win logic
 const playerWinsMedium = () => {
   if (player.score >= 500) {
-    update()
+    refresh()
+    grid.classList.add("hidden")
+    levelOneDone.classList.remove("hidden")
 
     // update p text for win message
     // play some music
@@ -312,7 +316,7 @@ const resetPage = () => {
 const revealGrid = () => {
   grid.classList.remove("hidden")
 }
-const welcomePage = document.querySelector(".welcome-page")
+
 const hideWelcome = () => {
   welcomePage.classList.add("hidden")
 }
