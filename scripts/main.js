@@ -6,7 +6,8 @@ const height = 25
 const width = 25
 const score = document.getElementById("player-score")
 const lives = document.getElementById("lives")
-const startButton = document.querySelector("button")
+const startButton = document.getElementById("start-button")
+const restartButton = document.getElementById("restart-button")
 // need to create and add restart button
 
 const createCells = () => {
@@ -21,11 +22,13 @@ const createCells = () => {
 }
 createCells()
 
-// initialise the player
-let playerDiv = cells[24][12]
-playerDiv.classList.add("player")
+// create space for endgame message to appear
 
-// random list of numbers between 3 and 24 (y)
+// initialise the player
+initialisePlayer = () => {
+  let playerDiv = cells[24][12]
+  playerDiv.classList.add("player")
+}
 
 //initialise the fish nets
 let maxFishNets = 12
@@ -47,7 +50,6 @@ const fishNets = {
   },
 }
 fishNets.createFishNets()
-
 // same process for plankton
 let maxPlankton = 80
 const plankton = {
@@ -82,6 +84,12 @@ const plankton = {
 }
 plankton.createPlankton()
 
+// Ensure details are constantly up to date.
+const refresh = () => {
+  score.innerHTML = player.score
+  lives.innerHTML = player.lives
+}
+
 const newOcean = () => {
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
@@ -89,33 +97,19 @@ const newOcean = () => {
     }
   }
   // INITIALISE PLAYER
+  player.positionY = 24
+  player.positionX = 12
   player.score = 0
   player.lives = 2
+  refresh()
 
   fishNets.createFishNets()
   plankton.createPlankton()
   // INITIALISE SHARKS & FISH
 }
-// Ensure details are constantly up to date.
-const refresh = () => {
-  score.innerHTML = player.score
-  lives.innerHTML = player.lives
-}
 
 // create function that hides the start button
 // and maybe changes to some text elsewhere.
-
-// reset the page option
-const resetPage = () => {
-  window.location.reload()
-  startGame()
-}
-
-// activate buttons
-// startButton.addEventListener("click", startGame)
-// startButton.addEventListener('click', hideBtn)
-// startButton.addEventListener('click', soundBegins)
-// restartButton.addEventListener('click', resetPage)
 
 const player = {
   score: 0,
@@ -301,14 +295,33 @@ class Fish {
 }
 
 // Create win logic
-const playerWins = () => {
-  if (player.score >= 1000) {
+const playerWinsMedium = () => {
+  if (player.score >= 500) {
     update()
-    // clearInterval(gameTimer)
+
     // update p text for win message
     // play some music
   }
 }
+// reset the page option
+const resetPage = () => {
+  window.location.reload()
+  startGame()
+}
+
+const revealGrid = () => {
+  grid.classList.remove("hidden")
+}
+const welcomePage = document.querySelector(".welcome-page")
+const hideWelcome = () => {
+  welcomePage.classList.add("hidden")
+}
+// activate buttons
+startButton.addEventListener("click", hideWelcome)
+startButton.addEventListener("click", revealGrid)
+startButton.addEventListener("click", startGameMedium)
+
+restartButton.addEventListener("click", newOcean)
 window.addEventListener(
   "keydown",
   function (e) {
@@ -325,27 +338,40 @@ window.addEventListener(
 
 // create the stuff
 
-const shark1 = new Shark(8, 4, 500, "shark")
-const shark2 = new Shark(10, 9, 500, "shark")
-const shark3 = new Shark(21, 12, 500, "shark")
-const shark4 = new Shark(18, 3, 500, "shark")
-const shark5 = new Shark(9, 6, 500, "shark")
-const shark6 = new Shark(3, 1, 500, "shark")
+const shark1 = new Shark(8, 4, 300, "shark")
+const shark2 = new Shark(10, 9, 300, "shark")
+const shark3 = new Shark(21, 12, 300, "shark")
+const shark4 = new Shark(18, 3, 300, "shark")
+const shark5 = new Shark(9, 6, 300, "shark")
+const shark6 = new Shark(3, 1, 300, "shark")
 
-const fish1 = new Fish(10, 23, 500, "fish")
-const fish2 = new Fish(1, 1, 500, "fish")
+const fish1 = new Fish(7, 2, 400, "fish")
+const fish2 = new Fish(14, 9, 400, "fish")
+const fish3 = new Fish(11, 23, 400, "fish")
+const fish4 = new Fish(24, 1, 400, "fish")
+const fish5 = new Fish(12, 13, 400, "fish")
+const fish6 = new Fish(19, 10, 400, "fish")
 // execute
 let gameTimer
 
-function startGame() {
+function startGameMedium() {
   gameTimer = setInterval(() => {
     const timeSig = Date.now()
+
     player.move()
 
     fish1.move(timeSig)
     fish1.interaction()
     fish2.move(timeSig)
     fish2.interaction()
+    fish3.move(timeSig)
+    fish3.interaction()
+    fish4.move(timeSig)
+    fish4.interaction()
+    fish5.move(timeSig)
+    fish5.interaction()
+    fish6.move(timeSig)
+    fish6.interaction()
 
     shark1.move(timeSig)
     shark1.interaction()
@@ -361,8 +387,7 @@ function startGame() {
     shark6.interaction()
 
     player.livesRemaining()
-    playerWins()
+    playerWinsMedium()
     plankton.interaction()
   }, 100)
 }
-startGame()
