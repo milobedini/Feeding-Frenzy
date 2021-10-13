@@ -176,15 +176,18 @@ document.addEventListener("keydown", player.handlePlayerInput)
 
 // Classes
 
-class movingObject {
+class Shark {
   constructor(positionY, positionX, speed, name) {
     this.positionY = positionY
     this.positionX = positionX
     this.speed = speed
     this.name = name
   }
+  // create movement for the sharks
   lastMovedAt = null
   move(timeSig) {
+    // const isPlayerOnShark =
+    // this.positionY === player.positionY && this.positionX === player.positionX
     if (this.lastMovedAt === null || timeSig - this.lastMovedAt > this.speed) {
       if (this.positionX >= 0) {
         cells[this.positionY][this.positionX].classList.remove(this.name)
@@ -193,7 +196,14 @@ class movingObject {
       cells[this.positionY][this.positionX].classList.add(this.name)
       this.lastMovedAt = timeSig
     }
+    // if (isPlayerOnShark) {
+    //   cells[player.positionY][player.positionX].classList.remove("player")
+    //   player.positionY = this.positionY
+    //   player.positionX = this.positionX
+    //   cells[player.positionY][player.positionX].classList.add("player")
+    // }
   }
+  // take a life and return player to start position if eaten
   interaction() {
     if (
       this.positionY === player.positionY &&
@@ -209,19 +219,46 @@ class movingObject {
     }
   }
 }
-class shark extends movingObject {
+//  similar process for the fish
+class Fish {
   constructor(positionY, positionX, speed, name) {
-    super(positionY, positionX, speed, name)
+    this.positionY = positionY
+    this.positionX = positionX
+    this.speed = speed
+    this.name = name
   }
+  lastMovedAt = null
   move(timeSig) {
-    const isPlayerOnShark =
-      this.positionY === player.positionY && this.positionX === player.positionX
-    super.move(timeSig)
-    if (isPlayerOnShark) {
-      cells[player.positionY][player.positionX].classList.remove("player")
-      player.positionY = this.positionY
-      player.positionX = this.positionX
-      cells[player.positionY][player.positionX].classList.add("player")
+    if (this.positionX === null) {
+      return
+    }
+    if (this.lastMovedAt === null || timeSig - this.lastMovedAt > this.speed) {
+      if (this.positionX >= 0) {
+        cells[this.positionY][this.positionX].classList.remove(this.name)
+      }
+      if (
+        this.positionX === player.positionX &&
+        this.positionY === player.positionY
+      ) {
+        return
+      }
+      this.positionX = (this.positionX + 1) % width
+      cells[this.positionY][this.positionX].classList.add(this.name)
+      this.lastMovedAt = timeSig
+    }
+  }
+  // currently removing the class whilst the player is on the fish but then reappears!
+  interaction() {
+    if (
+      this.positionY === player.positionY &&
+      this.positionX === player.positionX
+    ) {
+      const x = player.positionX
+      const y = player.positionY
+      cells[y][x].classList.remove("fish")
+      this.positionX = null
+      player.score = player.score + 50
+      refresh()
     }
   }
 }
@@ -251,13 +288,15 @@ window.addEventListener(
 
 // create the stuff
 
-const shark1 = new movingObject(8, 4, 500, "shark")
-const shark2 = new movingObject(10, 9, 500, "shark")
-const shark3 = new movingObject(21, 12, 500, "shark")
-const shark4 = new movingObject(18, 3, 500, "shark")
-const shark5 = new movingObject(9, 6, 500, "shark")
-const shark6 = new movingObject(3, 1, 500, "shark")
+const shark1 = new Shark(8, 4, 500, "shark")
+const shark2 = new Shark(10, 9, 500, "shark")
+const shark3 = new Shark(21, 12, 500, "shark")
+const shark4 = new Shark(18, 3, 500, "shark")
+const shark5 = new Shark(9, 6, 500, "shark")
+const shark6 = new Shark(3, 1, 500, "shark")
 
+const fish1 = new Fish(10, 23, 500, "fish")
+const fish2 = new Fish(1, 1, 500, "fish")
 // execute
 let gameTimer
 
@@ -265,6 +304,11 @@ function startGame() {
   gameTimer = setInterval(() => {
     const timeSig = Date.now()
     player.move()
+
+    fish1.move(timeSig)
+    fish1.interaction()
+    fish2.move(timeSig)
+    fish2.interaction()
 
     shark1.move(timeSig)
     shark1.interaction()
