@@ -10,6 +10,8 @@ const startButton = document.getElementById("start-button")
 const restartButton = document.getElementById("restart-button")
 const welcomePage = document.querySelector(".welcome-page")
 const levelOneDone = document.querySelector(".level-one-done")
+const startLevelTwoButton = document.getElementById("yes-to-level-two")
+
 // need to create and add restart button
 
 const createCells = () => {
@@ -114,11 +116,7 @@ const newOcean = () => {
 
   fishNets.createFishNets()
   plankton.createPlankton()
-  // INITIALISE SHARKS & FISH
 }
-
-// create function that hides the start button
-// and maybe changes to some text elsewhere.
 
 const player = {
   score: 0,
@@ -313,10 +311,20 @@ const playerWinsMedium = () => {
     audio.currentTime = 0
   }
 }
+
+// const playerWinsHard = () => {
+//   if (player.score >= 500) {
+//     refresh()
+//     grid.classList.add("hidden")
+//     levelOneDone.classList.remove("hidden")
+//     audio.pause()
+//     audio.currentTime = 0
+//   }
+// }
 // reset the page option
 const resetPage = () => {
   window.location.reload()
-  startGame()
+  startGameMedium()
 }
 
 const revealGrid = () => {
@@ -326,10 +334,25 @@ const revealGrid = () => {
 const hideWelcome = () => {
   welcomePage.classList.add("hidden")
 }
+const movePastLevelOne = () => {
+  if (levelOneDone.classList.contains("hidden")) {
+    return
+  }
+  console.log(levelOneDone.classList)
+  levelOneDone.classList.add("hidden")
+  console.log(levelOneDone.classList)
+  player.score = 0
+  player.lives = 2
+
+  refresh()
+}
 // activate buttons
 startButton.addEventListener("click", hideWelcome)
 startButton.addEventListener("click", revealGrid)
 startButton.addEventListener("click", startGameMedium)
+startLevelTwoButton.addEventListener("click", movePastLevelOne)
+startLevelTwoButton.addEventListener("click", revealGrid)
+startLevelTwoButton.addEventListener("click", startGameHard)
 
 restartButton.addEventListener("click", newOcean)
 window.addEventListener(
@@ -354,6 +377,10 @@ const shark3 = new Shark(21, 12, 300, "shark")
 const shark4 = new Shark(18, 3, 300, "shark")
 const shark5 = new Shark(9, 6, 300, "shark")
 const shark6 = new Shark(3, 1, 300, "shark")
+const shark7 = new Shark(16, 17, 300, "shark")
+const shark8 = new Shark(24, 6, 300, "shark")
+const shark9 = new Shark(3, 2, 300, "shark")
+const shark10 = new Shark(5, 22, 300, "shark")
 
 const fish1 = new Fish(7, 2, 400, "fish")
 const fish2 = new Fish(14, 9, 400, "fish")
@@ -361,10 +388,56 @@ const fish3 = new Fish(11, 23, 400, "fish")
 const fish4 = new Fish(24, 1, 400, "fish")
 const fish5 = new Fish(12, 13, 400, "fish")
 const fish6 = new Fish(19, 10, 400, "fish")
+const fish7 = new Fish(2, 1, 400, "fish")
+const fish8 = new Fish(20, 5, 400, "fish")
+const fish9 = new Fish(5, 17, 400, "fish")
 // execute
 let gameTimer
 
 function startGameMedium() {
+  gameTimer = setInterval(() => {
+    const timeSig = Date.now()
+
+    player.move()
+
+    fish1.move(timeSig)
+    fish1.interaction()
+    fish2.move(timeSig)
+    fish2.interaction()
+    fish3.move(timeSig)
+    fish3.interaction()
+    fish4.move(timeSig)
+    fish4.interaction()
+    fish5.move(timeSig)
+    fish5.interaction()
+    fish6.move(timeSig)
+    fish6.interaction()
+    fish7.move(timeSig)
+    fish7.interaction()
+    fish8.move(timeSig)
+    fish8.interaction()
+    fish9.move(timeSig)
+    fish9.interaction()
+
+    shark1.move(timeSig)
+    shark1.interaction()
+    shark2.move(timeSig)
+    shark2.interaction()
+    shark3.move(timeSig)
+    shark3.interaction()
+    shark4.move(timeSig)
+    shark4.interaction()
+    shark5.move(timeSig)
+    shark5.interaction()
+    shark6.move(timeSig)
+    shark6.interaction()
+
+    player.livesRemaining()
+    playerWinsMedium()
+    plankton.interaction()
+  }, 100)
+}
+function startGameHard() {
   gameTimer = setInterval(() => {
     const timeSig = Date.now()
 
@@ -395,9 +468,17 @@ function startGameMedium() {
     shark5.interaction()
     shark6.move(timeSig)
     shark6.interaction()
+    shark7.move(timeSig)
+    shark7.interaction()
+    shark8.move(timeSig)
+    shark8.interaction()
+    shark9.move(timeSig)
+    shark9.interaction()
+    shark10.move(timeSig)
+    shark10.interaction()
 
     player.livesRemaining()
-    playerWinsMedium()
+    // playerWinsHard()
     plankton.interaction()
   }, 100)
 }

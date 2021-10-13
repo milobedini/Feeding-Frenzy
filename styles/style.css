@@ -206,6 +206,9 @@ footer p {
 .hidden {
   display: none;
 }
+.level-one-done.hidden {
+  display: none;
+}
 
 @media screen and (max-width: 1200px) {
   body {
