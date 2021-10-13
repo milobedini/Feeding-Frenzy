@@ -228,6 +228,9 @@ footer p {
     );
     margin: 0;
   }
+  h1 {
+    padding: unset;
+  }
   main {
     display: none;
   }
