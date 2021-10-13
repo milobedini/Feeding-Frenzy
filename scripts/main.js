@@ -91,6 +91,7 @@ const newOcean = () => {
   // INITIALISE PLAYER
   player.score = 0
   player.lives = 2
+
   fishNets.createFishNets()
   plankton.createPlankton()
   // INITIALISE SHARKS & FISH
@@ -131,18 +132,67 @@ const player = {
     this.keyPressed = null
     switch (lastKeyPressed) {
       case 39:
+        if (this.positionX >= width - 1) {
+          console.log("edge of grid")
+          return
+        }
+        if (
+          cells[this.positionY][this.positionX + 1].classList.contains(
+            "fish-net"
+          )
+        ) {
+          console.log("fish net in the way!")
+          return
+        }
         if (this.positionX < width - 1) this.positionX++
         console.log("player moves right")
         break
       case 37:
+        if (this.positionX <= 0) {
+          console.log("edge of grid")
+          return
+        }
+        if (
+          cells[this.positionY][this.positionX - 1].classList.contains(
+            "fish-net"
+          )
+        ) {
+          console.log("fish net in the way!")
+          return
+        }
         if (this.positionX > 0) this.positionX--
         console.log("player moves left")
         break
       case 38:
+        if (this.positionY <= 0) {
+          console.log("edge of grid")
+          return
+        }
+
+        if (
+          cells[this.positionY - 1][this.positionX].classList.contains(
+            "fish-net"
+          )
+        ) {
+          console.log("fish net in the way!")
+          return
+        }
         if (this.positionY > 0) this.positionY--
         console.log("player moves up")
         break
       case 40:
+        if (this.positionY >= height - 1) {
+          console.log("end of grid")
+          return
+        }
+        if (
+          cells[this.positionY + 1][this.positionX].classList.contains(
+            "fish-net"
+          )
+        ) {
+          console.log("fish net in the way!")
+          return
+        }
         if (this.positionY < height - 1) this.positionY++
         console.log("player moves down")
         break
