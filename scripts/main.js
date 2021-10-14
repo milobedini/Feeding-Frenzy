@@ -36,12 +36,12 @@ const createCells = () => {
 createCells()
 
 // add the main audio
-const audio = document.querySelector("audio")
-function oceanSound() {
-  audio.src = "../styles/ocean-sound.wav"
-  audio.play()
-}
-startButton.addEventListener("click", oceanSound)
+// const audio = document.querySelector("audio")
+// function oceanSound() {
+//   audio.src = "../styles/ocean-sound.wav"
+//   audio.play()
+// }
+// startButton.addEventListener("click", oceanSound)
 // create the player
 
 const player = {
@@ -135,7 +135,7 @@ const player = {
       gameOver.classList.remove("hidden")
       audio.pause()
       audio.currentTime = 0
-      gameOverAudio.src = ".//styles/game-over.wav"
+      gameOverAudio.src = "../styles/game-over.wav"
       gameOverAudio.play()
     }
   },
@@ -387,7 +387,7 @@ startButton.addEventListener("click", startGameMedium)
 startLevelTwoButton.addEventListener("click", movePastLevelOne)
 startLevelTwoButton.addEventListener("click", revealGrid)
 startLevelTwoButton.addEventListener("click", startGameHard)
-startLevelTwoButton.addEventListener("click", oceanSound)
+// startLevelTwoButton.addEventListener("click", oceanSound)
 startFinalLevelButton.addEventListener("click", movePastLevelTwo)
 startFinalLevelButton.addEventListener("click", revealGrid)
 startFinalLevelButton.addEventListener("click", startGameFinal)
