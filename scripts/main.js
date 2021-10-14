@@ -304,11 +304,12 @@ class Fish {
 // Create win logic
 const playerWinsMedium = () => {
   if (player.score >= 500) {
+    clearInterval(gameTimer)
     refresh()
     grid.classList.add("hidden")
     levelOneDone.classList.remove("hidden")
-    audio.pause()
-    audio.currentTime = 0
+    audio.src = "../styles/game-win.wav"
+    audio.play()
   }
 }
 
@@ -338,13 +339,9 @@ const movePastLevelOne = () => {
   if (levelOneDone.classList.contains("hidden")) {
     return
   }
-  console.log(levelOneDone.classList)
-  levelOneDone.classList.add("hidden")
-  console.log(levelOneDone.classList)
-  player.score = 0
-  player.lives = 2
-
+  newOcean()
   refresh()
+  levelOneDone.classList.add("hidden")
 }
 // activate buttons
 startButton.addEventListener("click", hideWelcome)
@@ -353,8 +350,9 @@ startButton.addEventListener("click", startGameMedium)
 startLevelTwoButton.addEventListener("click", movePastLevelOne)
 startLevelTwoButton.addEventListener("click", revealGrid)
 startLevelTwoButton.addEventListener("click", startGameHard)
+startLevelTwoButton.addEventListener("click", oceanSound)
 
-restartButton.addEventListener("click", newOcean)
+restartButton.addEventListener("click", resetPage)
 window.addEventListener(
   "keydown",
   function (e) {
