@@ -28,7 +28,8 @@ header {
   width: 100%;
 }
 h1 {
-  padding-left: 100px;
+  padding-left: 5vw;
+  margin-bottom: 0;
 }
 button {
   background: yellow;
@@ -162,9 +163,30 @@ footer p {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.welcome-page,
+.welcome-page {
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  width: 1200px;
+  border: 3px solid gold;
+  justify-content: center;
+  align-items: center;
+  color: gold;
+  font-size: 40px;
+  background: black;
+}
+.welcome-page h2 {
+  margin-bottom: 10vh;
+  color: rgb(46, 199, 46);
+}
+.welcome-page p {
+  font-size: 0.5em;
+}
+
 .level-one-done,
-.level-two-done {
+.level-two-done,
+.game-completed,
+.game-over {
   display: flex;
   flex-direction: column;
   height: 600px;
@@ -210,6 +232,29 @@ footer p {
 .level-one-done.hidden {
   display: none;
 }
+.game-completed h6 {
+  color: rgb(109, 109, 238);
+}
+.game-end-container p {
+  font-style: italic;
+  text-decoration: underline;
+  font-size: 0.5em;
+}
+.social {
+  display: flex;
+  width: 80vw;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+  font-size: 0.5em;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
 
 @media screen and (max-width: 1200px) {
   body {
@@ -231,6 +276,7 @@ footer p {
   }
   h1 {
     padding: unset;
+    margin-bottom: 20vh;
   }
   main {
     display: none;

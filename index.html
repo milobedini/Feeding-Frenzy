@@ -27,6 +27,20 @@
       </div>
       <div class="welcome-page">
         <h2>Please press start to begin!</h2>
+        <p>
+          Each level requires 500 points to be completed. You have 2 lives for
+          the entire game.
+        </p>
+        <p>
+          The plankton and fish are worth 10 points and 50 points respectively.
+        </p>
+        <p>You cannot swim through fish nets and watch out for the sharks!</p>
+      </div>
+      <div class="game-over hidden">
+        <h3>
+          Unlucky - you lost!
+          <h6>Restart if you wish to try again.</h6>
+        </h3>
       </div>
       <div class="level-one-done hidden">
         <h3>Congrats - you made it!</h3>
@@ -40,7 +54,7 @@
         </div>
       </div>
       <div class="level-two-done hidden">
-        <h3>Congrats - level 2 ✅!</h3>
+        <h3>Congrats - level 2 ✅</h3>
         <div class="level-end-container">
           <p>Would you like to proceed to the final level?</p>
           <button id="yes-to-level-three" class="yes">YES</button
@@ -50,13 +64,21 @@
       <div class="game-completed hidden">
         <h3>
           Awesome! You completed Feeding Frenzy.
-          <h6>Restart if you want to go again!</h6>
+          <h6>Restart if you want to play again!</h6>
         </h3>
         <div class="game-end-container">
           <p>Milo Bedini</p>
           <ul class="social">
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">Twitter</a></li>
+            <li>
+              <a href="https://github.com/milobedini" target="_blank">GitHub</a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/milo-bedini-794787154/"
+                target="_blank"
+                >LinkedIn</a
+              >
+            </li>
           </ul>
         </div>
       </div>
@@ -74,6 +96,7 @@
     <audio id="plankton-audio"></audio>
     <audio id="shark-audio"></audio>
     <audio id="fish-audio"></audio>
+    <audio id="game-over-audio"></audio>
     <script src="./scripts/main.js"></script>
   </body>
 </html>
