@@ -126,6 +126,7 @@ const player = {
     }
     cells[player.positionY][player.positionX].classList.add("player")
   },
+  // check if player has lost
   livesRemaining() {
     if (this.lives <= 0) {
       clearInterval(gameTimer)
@@ -214,7 +215,7 @@ const newOcean = () => {
       cells[y][x].setAttribute("class", "")
     }
   }
-  // re-initialise player
+  // re-initialise player and restore points to zero
   player.positionY = 24
   player.positionX = 12
   player.score = 0
@@ -392,6 +393,7 @@ startFinalLevelButton.addEventListener("click", revealGrid)
 startFinalLevelButton.addEventListener("click", startGameFinal)
 startFinalLevelButton.addEventListener("click", oceanSound)
 
+// for each so that every no button returns the player to the landing page
 noButton.forEach(function (button) {
   button.addEventListener("click", resetPage)
 })
@@ -455,7 +457,7 @@ const fish20 = new Fish(21, 8, 250, "fish")
 const fish21 = new Fish(18, 24, 250, "fish")
 const fish22 = new Fish(19, 20, 250, "fish")
 
-// initialise the game
+// initialise the levels
 let gameTimer
 
 function startGameMedium() {
