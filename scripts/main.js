@@ -16,6 +16,7 @@ const levelTwoDone = document.querySelector(".level-two-done")
 const gameCompleted = document.querySelector(".game-completed")
 const startLevelTwoButton = document.getElementById("yes-to-level-two")
 const startFinalLevelButton = document.getElementById("yes-to-level-three")
+const noButton = document.querySelectorAll(".no")
 const planktonAudio = document.getElementById("plankton-audio")
 const fishAudio = document.getElementById("fish-audio")
 const sharkAudio = document.getElementById("shark-audio")
@@ -41,94 +42,7 @@ function oceanSound() {
   audio.play()
 }
 startButton.addEventListener("click", oceanSound)
-
-// initialise the player
-initialisePlayer = () => {
-  let playerDiv = cells[24][12]
-  playerDiv.classList.add("player")
-}
-
-//initialise the fish nets
-let maxFishNets = 30
-
-const fishNets = {
-  fishNetCells: [],
-  createFishNets() {
-    for (let i = 0; i < maxFishNets; i++) {
-      const fishNetDiv =
-        cells[Math.floor(Math.random() * height)][
-          Math.floor(Math.random() * width)
-        ]
-      if (fishNetDiv.classList.contains("player") === true) {
-        return
-      }
-      fishNetDiv.classList.add("fish-net")
-      this.fishNetCells.push(fishNetDiv)
-    }
-  },
-}
-fishNets.createFishNets()
-// same process for plankton
-let maxPlankton = 88
-const plankton = {
-  planktonCells: [],
-  createPlankton() {
-    for (let i = 0; i < maxPlankton; i++) {
-      const planktonDiv =
-        cells[Math.floor(Math.random() * height)][
-          Math.floor(Math.random() * width)
-        ]
-      if (planktonDiv.classList.contains("player") === true) {
-        return
-      }
-      planktonDiv.classList.add("plankton")
-      this.planktonCells.push(planktonDiv)
-    }
-  },
-  interaction() {
-    this.planktonCells.forEach((planktonDiv) => {
-      if (
-        planktonDiv.classList.contains("plankton") &&
-        planktonDiv.classList.contains("player")
-      ) {
-        const y = player.positionY
-        const x = player.positionX
-        cells[player.positionY][player.positionX].classList.remove("plankton")
-        planktonAudio.src = "../styles/plankton.wav"
-        planktonAudio.play()
-        player.score += 10
-        refresh()
-      }
-    })
-  },
-}
-plankton.createPlankton()
-
-// Ensure details are constantly up to date.
-const refresh = () => {
-  score.innerHTML = `${player.score}/500`
-  if (player.lives <= 0) {
-    lives.innerHTML = `${player.lives}/2`
-    return
-  }
-  lives.innerHTML = `${player.lives - 1}/2`
-}
-
-const newOcean = () => {
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      cells[y][x].setAttribute("class", "")
-    }
-  }
-  // INITIALISE PLAYER
-  player.positionY = 24
-  player.positionX = 12
-  player.score = 0
-  refresh()
-
-  fishNets.createFishNets()
-  plankton.createPlankton()
-}
+// create the player
 
 const player = {
   score: 0,
@@ -225,8 +139,93 @@ const player = {
     }
   },
 }
+//fish nets
+let maxFishNets = 30
 
-// add the player's event listener
+const fishNets = {
+  fishNetCells: [],
+  createFishNets() {
+    for (let i = 0; i <= maxFishNets; i++) {
+      // generate in random positions each time the function is called
+      const fishNetDiv =
+        cells[Math.floor(Math.random() * height)][
+          Math.floor(Math.random() * width)
+        ]
+      // ensure can't be placed on starting position
+      if (fishNetDiv.classList.contains("player") === true) {
+        return
+      }
+      fishNetDiv.classList.add("fish-net")
+      this.fishNetCells.push(fishNetDiv)
+    }
+  },
+}
+fishNets.createFishNets()
+// same process for plankton
+let maxPlankton = 88
+const plankton = {
+  planktonCells: [],
+  createPlankton() {
+    for (let i = 0; i < maxPlankton; i++) {
+      const planktonDiv =
+        cells[Math.floor(Math.random() * height)][
+          Math.floor(Math.random() * width)
+        ]
+      if (planktonDiv.classList.contains("player") === true) {
+        return
+      }
+      planktonDiv.classList.add("plankton")
+      this.planktonCells.push(planktonDiv)
+    }
+  },
+  interaction() {
+    this.planktonCells.forEach((planktonDiv) => {
+      if (
+        planktonDiv.classList.contains("plankton") &&
+        planktonDiv.classList.contains("player")
+      ) {
+        const y = player.positionY
+        const x = player.positionX
+        cells[player.positionY][player.positionX].classList.remove("plankton")
+        planktonAudio.src = "../styles/plankton.wav"
+        planktonAudio.play()
+        player.score += 10
+        refresh()
+      }
+    })
+  },
+}
+plankton.createPlankton()
+
+// Ensure details are constantly up to date.
+const refresh = () => {
+  score.innerHTML = `${player.score}/500`
+  if (player.lives <= 0) {
+    lives.innerHTML = `${player.lives}/2`
+    return
+  }
+  lives.innerHTML = `${player.lives - 1}/2`
+}
+
+// clear the ocean
+const newOcean = () => {
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      cells[y][x].setAttribute("class", "")
+    }
+  }
+  // re-initialise player
+  player.positionY = 24
+  player.positionX = 12
+  player.score = 0
+  refresh()
+
+  // refill the static ocean
+  fishNets.createFishNets()
+  plankton.createPlankton()
+}
+
+// add the player movement event listener
 document.addEventListener("keydown", player.handlePlayerInput)
 
 // Classes
@@ -241,8 +240,7 @@ class Shark {
   // create movement for the sharks
   lastMovedAt = null
   move(timeSig) {
-    // const isPlayerOnShark =
-    // this.positionY === player.positionY && this.positionX === player.positionX
+    // timeSig created to be able to alter the speed of each object easily.
     if (this.lastMovedAt === null || timeSig - this.lastMovedAt > this.speed) {
       if (this.positionX >= 0) {
         cells[this.positionY][this.positionX].classList.remove(this.name)
@@ -251,12 +249,6 @@ class Shark {
       cells[this.positionY][this.positionX].classList.add(this.name)
       this.lastMovedAt = timeSig
     }
-    // if (isPlayerOnShark) {
-    //   cells[player.positionY][player.positionX].classList.remove("player")
-    //   player.positionY = this.positionY
-    //   player.positionX = this.positionX
-    //   cells[player.positionY][player.positionX].classList.add("player")
-    // }
   }
   // take a life and return player to start position if eaten
   interaction() {
@@ -304,7 +296,6 @@ class Fish {
       this.lastMovedAt = timeSig
     }
   }
-  // currently removing the class whilst the player is on the fish but then reappears!
   interaction() {
     if (
       this.positionY === player.positionY &&
@@ -315,7 +306,6 @@ class Fish {
       cells[y][x].classList.remove("fish")
       fishAudio.src = "../styles/fish.wav"
       fishAudio.play()
-      // make sure that the fish does not reappear when the player moves away.
       this.positionX = null
       player.score = player.score += 50
       refresh()
@@ -323,9 +313,10 @@ class Fish {
   }
 }
 
-// Create win logic
+// Create win logic for each level
 const playerWinsMedium = () => {
   if (player.score >= 500) {
+    // stop the game from continuing
     clearInterval(gameTimer)
     refresh()
     grid.classList.add("hidden")
@@ -355,19 +346,22 @@ const playerWinsFinal = () => {
     audio.play()
   }
 }
-// reset the page option
+// reset the page option (restart)
 const resetPage = () => {
   window.location.reload()
   startGameMedium()
 }
-
+// below functions for between each level
 const revealGrid = () => {
   grid.classList.remove("hidden")
 }
-
+const showWelcome = () => {
+  welcomePage.classList.remove("hidden")
+}
 const hideWelcome = () => {
   welcomePage.classList.add("hidden")
 }
+
 const movePastLevelOne = () => {
   if (levelOneDone.classList.contains("hidden")) {
     return
@@ -398,7 +392,12 @@ startFinalLevelButton.addEventListener("click", revealGrid)
 startFinalLevelButton.addEventListener("click", startGameFinal)
 startFinalLevelButton.addEventListener("click", oceanSound)
 
+noButton.forEach(function (button) {
+  button.addEventListener("click", resetPage)
+})
 restartButton.addEventListener("click", resetPage)
+
+// stop the browser from scrolling when the arrows are inputted:
 window.addEventListener(
   "keydown",
   function (e) {
@@ -413,14 +412,14 @@ window.addEventListener(
   false
 )
 
-// create the stuff
+// create the moving game components:
 
 const shark1 = new Shark(8, 4, 300, "shark")
 const shark2 = new Shark(10, 9, 300, "shark")
-const shark3 = new Shark(21, 12, 250, "shark")
+const shark3 = new Shark(5, 12, 250, "shark")
 const shark4 = new Shark(18, 3, 250, "shark")
 const shark5 = new Shark(22, 6, 200, "shark")
-const shark6 = new Shark(13, 2, 200, "shark")
+const shark6 = new Shark(2, 2, 200, "shark")
 const shark7 = new Shark(16, 17, 175, "shark")
 const shark8 = new Shark(23, 6, 175, "shark")
 const shark9 = new Shark(10, 2, 150, "shark")
@@ -455,7 +454,8 @@ const fish19 = new Fish(4, 4, 250, "fish")
 const fish20 = new Fish(21, 8, 250, "fish")
 const fish21 = new Fish(18, 24, 250, "fish")
 const fish22 = new Fish(19, 20, 250, "fish")
-// execute
+
+// initialise the game
 let gameTimer
 
 function startGameMedium() {
