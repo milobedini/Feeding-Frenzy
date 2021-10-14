@@ -4,6 +4,7 @@ const grid = document.querySelector(".grid")
 const cells = []
 const height = 25
 const width = 25
+// grab HTML elements
 const score = document.getElementById("player-score")
 const lives = document.getElementById("lives")
 const startButton = document.getElementById("start-button")
@@ -20,8 +21,7 @@ const fishAudio = document.getElementById("fish-audio")
 const sharkAudio = document.getElementById("shark-audio")
 const gameOverAudio = document.getElementById("game-over-audio")
 
-// need to create and add restart button
-
+// Create the grid
 const createCells = () => {
   for (let y = 0; y < height; y++) {
     cells[y] = []
@@ -34,8 +34,7 @@ const createCells = () => {
 }
 createCells()
 
-// create space for endgame message to appear
-// add some audio
+// add the main audio
 const audio = document.querySelector("audio")
 function oceanSound() {
   audio.src = "../styles/ocean-sound.wav"
@@ -50,7 +49,7 @@ initialisePlayer = () => {
 }
 
 //initialise the fish nets
-let maxFishNets = 15
+let maxFishNets = 30
 
 const fishNets = {
   fishNetCells: [],
@@ -418,44 +417,44 @@ window.addEventListener(
 
 const shark1 = new Shark(8, 4, 300, "shark")
 const shark2 = new Shark(10, 9, 300, "shark")
-const shark3 = new Shark(21, 12, 300, "shark")
+const shark3 = new Shark(21, 12, 250, "shark")
 const shark4 = new Shark(18, 3, 250, "shark")
-const shark5 = new Shark(9, 6, 250, "shark")
-const shark6 = new Shark(13, 2, 250, "shark")
-const shark7 = new Shark(16, 17, 200, "shark")
-const shark8 = new Shark(24, 6, 200, "shark")
-const shark9 = new Shark(3, 2, 200, "shark")
+const shark5 = new Shark(22, 6, 200, "shark")
+const shark6 = new Shark(13, 2, 200, "shark")
+const shark7 = new Shark(16, 17, 175, "shark")
+const shark8 = new Shark(23, 6, 175, "shark")
+const shark9 = new Shark(10, 2, 150, "shark")
 const shark10 = new Shark(5, 22, 200, "shark")
-const shark11 = new Shark(2, 10, 150, "shark")
-const shark12 = new Shark(8, 17, 150, "shark")
-const shark13 = new Shark(2, 2, 150, "shark")
-const shark14 = new Shark(12, 12, 150, "shark")
-const shark15 = new Shark(19, 5, 150, "shark")
-const shark16 = new Shark(10, 1, 110, "shark")
-const shark17 = new Shark(4, 6, 110, "shark")
+const shark11 = new Shark(7, 10, 100, "shark")
+const shark12 = new Shark(8, 17, 100, "shark")
+const shark13 = new Shark(1, 2, 100, "shark")
+const shark14 = new Shark(12, 12, 100, "shark")
+const shark15 = new Shark(19, 5, 100, "shark")
+const shark16 = new Shark(10, 1, 100, "shark")
+const shark17 = new Shark(2, 6, 100, "shark")
 
-const fish1 = new Fish(7, 2, 400, "fish")
-const fish2 = new Fish(14, 9, 400, "fish")
-const fish3 = new Fish(11, 23, 400, "fish")
-const fish4 = new Fish(24, 1, 400, "fish")
-const fish5 = new Fish(12, 13, 400, "fish")
-const fish6 = new Fish(19, 10, 400, "fish")
-const fish7 = new Fish(2, 1, 400, "fish")
-const fish8 = new Fish(20, 5, 400, "fish")
-const fish9 = new Fish(5, 17, 400, "fish")
-const fish10 = new Fish(12, 10, 400, "fish")
-const fish11 = new Fish(8, 19, 400, "fish")
-const fish12 = new Fish(22, 3, 400, "fish")
-const fish13 = new Fish(6, 20, 400, "fish")
-const fish14 = new Fish(17, 13, 400, "fish")
-const fish15 = new Fish(3, 2, 400, "fish")
-const fish16 = new Fish(21, 19, 400, "fish")
-const fish17 = new Fish(18, 15, 400, "fish")
-const fish18 = new Fish(3, 12, 400, "fish")
-const fish19 = new Fish(3, 17, 400, "fish")
-const fish20 = new Fish(21, 8, 400, "fish")
-const fish21 = new Fish(18, 24, 400, "fish")
-const fish22 = new Fish(19, 12, 400, "fish")
+const fish1 = new Fish(7, 2, 300, "fish")
+const fish2 = new Fish(14, 1, 300, "fish")
+const fish3 = new Fish(11, 23, 300, "fish")
+const fish4 = new Fish(1, 6, 300, "fish")
+const fish5 = new Fish(12, 3, 300, "fish")
+const fish6 = new Fish(13, 20, 300, "fish")
+const fish7 = new Fish(2, 1, 300, "fish")
+const fish8 = new Fish(20, 5, 300, "fish")
+const fish9 = new Fish(5, 17, 300, "fish")
+const fish10 = new Fish(12, 10, 300, "fish")
+const fish11 = new Fish(8, 19, 300, "fish")
+const fish12 = new Fish(22, 3, 300, "fish")
+const fish13 = new Fish(6, 20, 300, "fish")
+const fish14 = new Fish(17, 13, 300, "fish")
+const fish15 = new Fish(3, 8, 300, "fish")
+const fish16 = new Fish(23, 19, 300, "fish")
+const fish17 = new Fish(10, 15, 250, "fish")
+const fish18 = new Fish(15, 12, 250, "fish")
+const fish19 = new Fish(4, 4, 250, "fish")
+const fish20 = new Fish(21, 8, 250, "fish")
+const fish21 = new Fish(18, 24, 250, "fish")
+const fish22 = new Fish(19, 20, 250, "fish")
 // execute
 let gameTimer
 
