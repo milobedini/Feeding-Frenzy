@@ -152,11 +152,12 @@ const fishNets = {
         cells[Math.floor(Math.random() * height)][
           Math.floor(Math.random() * width)
         ]
+      fishNetDiv.classList.add("fish-net")
       // ensure can't be placed on starting position
       if (fishNetDiv.classList.contains("player") === true) {
+        fishNetDiv.classList.remove("fish-net")
         return
       }
-      fishNetDiv.classList.add("fish-net")
       this.fishNetCells.push(fishNetDiv)
     }
   },
@@ -190,8 +191,6 @@ const plankton = {
         cells[player.positionY][player.positionX].classList.remove("plankton")
         planktonAudio.src = "../styles/plankton.wav"
         planktonAudio.play()
-        const plankAudio = new Audio("../styles/plankton.wav")
-        plankAudio.play()
         player.score += 10
         refresh()
       }
