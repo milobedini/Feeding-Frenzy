@@ -38,7 +38,7 @@ createCells()
 // add the main audio
 const audio = document.querySelector("audio")
 function oceanSound() {
-  audio.src = "styles/ocean-sound.wav"
+  audio.src = "../styles/ocean-sound.wav"
   audio.play()
 }
 startButton.addEventListener("click", oceanSound)
