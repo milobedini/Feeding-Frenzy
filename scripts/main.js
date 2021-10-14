@@ -38,7 +38,7 @@ createCells()
 // add the main audio
 const audio = document.querySelector("audio")
 function oceanSound() {
-  audio.src = "../styles/ocean-sound.wav"
+  audio.src = "./styles/ocean-sound.wav"
   audio.play()
 }
 startButton.addEventListener("click", oceanSound)
@@ -135,7 +135,7 @@ const player = {
       gameOver.classList.remove("hidden")
       audio.pause()
       audio.currentTime = 0
-      gameOverAudio.src = "../styles/game-over.wav"
+      gameOverAudio.src = "/styles/game-over.wav"
       gameOverAudio.play()
     }
   },
@@ -189,7 +189,7 @@ const plankton = {
         const y = player.positionY
         const x = player.positionX
         cells[player.positionY][player.positionX].classList.remove("plankton")
-        planktonAudio.src = "../styles/plankton.wav"
+        planktonAudio.src = "./styles/plankton.wav"
         planktonAudio.play()
         player.score += 10
         refresh()
@@ -258,7 +258,7 @@ class Shark {
       this.positionY === player.positionY &&
       this.positionX === player.positionX
     ) {
-      sharkAudio.src = "../styles/shark.wav"
+      sharkAudio.src = "./styles/shark.wav"
       sharkAudio.play()
       const x = player.positionX
       const y = player.positionY
@@ -306,7 +306,7 @@ class Fish {
       const x = player.positionX
       const y = player.positionY
       cells[y][x].classList.remove("fish")
-      fishAudio.src = "../styles/fish.wav"
+      fishAudio.src = "./styles/fish.wav"
       fishAudio.play()
       this.positionX = null
       player.score = player.score += 50
@@ -323,7 +323,7 @@ const playerWinsMedium = () => {
     refresh()
     grid.classList.add("hidden")
     levelOneDone.classList.remove("hidden")
-    audio.src = "../styles/game-win.wav"
+    audio.src = "./styles/game-win.wav"
     audio.play()
   }
 }
@@ -334,7 +334,7 @@ const playerWinsHard = () => {
     refresh()
     grid.classList.add("hidden")
     levelTwoDone.classList.remove("hidden")
-    audio.src = "../styles/game-win.wav"
+    audio.src = "./styles/game-win.wav"
     audio.play()
   }
 }
@@ -344,7 +344,7 @@ const playerWinsFinal = () => {
     refresh()
     grid.classList.add("hidden")
     gameCompleted.classList.remove("hidden")
-    audio.src = "../styles/game-win.wav"
+    audio.src = "./styles/game-win.wav"
     audio.play()
   }
 }
