@@ -7,3 +7,5 @@ A major challenge was creating moving objects (the sharks and the fish), and bei
 Another challenge was preventing a fish that had been eaten reappearing when the player moved off the prey's location!
 
 The stationary game objects (the plankton and the fish-nets) are generated randomly (with a max number for each set) upon each level commencing. I was particularly happy with the use of classes to be able to set each component's speed (and therefore game difficulty), and easily change the quantity of all the game's elements.
+
+<img width="1321" alt="Screenshot 2021-10-14 at 14 53 38" src="https://user-images.githubusercontent.com/89992629/137331465-be343d3b-20b1-4998-82cc-cb24e0c467e2.png">
