@@ -2,7 +2,7 @@
 
 # Overview
 Feeding Frenzy is an arcade-style aquatic game that took inspiration from the original version of 2004. The player’s fish must navigate the ocean and hunt down prey, whilst avoiding fishing nets and watching out for predators. The game consists of 3 levels of increasing difficulty.
-This was my first project with General Assembly and within development generally. Feeding Frenzy was built using vanilla javascript only (as well as HTML and CSS) over a one week period.
+This was my first project with General Assembly and within development generally. Feeding Frenzy was built using Vanilla JavaScript (as well as HTML and CSS) over a one week period.
 
 ## Deployed -> [Feeding Frenzy](https://milobedini.github.io/Feeding-Frenzy/) 
 
@@ -29,11 +29,11 @@ Simply clone or download the repository and open `index.html` with a browser’s
 
 ## 1) Planning
 
-The first day of the project was built solely on planning the project in the form of pseudocode and a wireframe. I broke these down into planning what each of the 3 files needed to provide to the game (such as the audio within the HTML file, the grid generation within the JavaScript file). I decided that the most logical approach would be to generate the (static) positions of the fishing nets and plankton automatically, whilst the sharks and the small fish would be determined at the start of each level with customisable traits. A 25x25 grid was used in order to allow enough space for the many game objects to interact reasonably.
+The first day of the project was spent solely on planning the project in the form of pseudocode and a wireframe. I broke these down into planning what each of the three files needed to provide to the game (such as the audio within the HTML file, the grid generation within the JavaScript file). I decided that the most logical approach would be to generate the (static) positions of the fishing nets and plankton algorithmically, whilst the sharks and the small fish would be determined at the start of each level with customisable traits. A 25x25 grid was used in order to allow enough space for the many game objects to interact reasonably.
 
 ## 2) Functionality
 
-Feeding Frenzy’s win logic requires the player to get to 500 points on each level with 2 lives for the entire game. The grid was initialised using a JavaScript loop. Initially this was done so that each cell had a different ‘index’ number (i.e. from 0 to 624) but restructuring the grid so that each cell had an x and a y reference (from 0-24) was key in simplifying some of the later functionality.
+Feeding Frenzy’s win logic requires the player to get to 500 points on each level with 2 lives for the entire game. The grid was initialised using a for loop. Initially this was done so that each cell had a different ‘index’ number (i.e. from 0 to 624) but restructuring the grid so that each cell had an x and a y reference (from 0-24) was key in simplifying some of the later functionality.
 For the player’s fish, an object was created with the score, lives, current position, and functionality to handle player input, moving the fish, and to check if the player had lost the game. A refresh function was used to continually update the DOM for the player’s score and lives. A snippet of the player object is shown below:
 #### Code Snippet 
 <img width="518" alt="Screenshot 2021-12-29 at 11 48 16" src="https://user-images.githubusercontent.com/89992629/147661758-e9f35a68-d9d3-4b3f-b5bc-1a29f6946c84.png">
@@ -49,7 +49,7 @@ The sharks and fish were created using classes, in order that many could be prod
 <img width="583" alt="Screenshot 2021-12-29 at 11 57 07" src="https://user-images.githubusercontent.com/89992629/147661815-ed76b05d-3a9a-41d4-b4e2-ac314c43bad1.png">
 
 
-Finally, the logic to win each level was created, as well as the functions to initialise each level with the appropriate components. For example the final level has 20 sharks , around half of which move over twice as quickly as in the first level which has just 6 sharks.
+Finally, the logic to win each level was created, as well as the functions to initialise each level with the appropriate components. For example the final level has 20 sharks, around half of which move over twice as quickly as in the first level which has just 6 sharks.
 
 
 ## 3) Styling
@@ -93,4 +93,4 @@ The final day of the project was spent cleaning things up and styling the game. 
 * Allow the sharks to swim in both horizontal directions. 
 
 # Key Takeaways
-I learnt a great deal from my first software engineering project , and gained a good grounding in Vanilla JavaScript. The use of classes, objects and intervals was a particularly useful experience for me going forward.
+I learnt a great deal from my first software engineering project, and gained a good grounding in Vanilla JavaScript. The use of classes, objects and intervals was a particularly useful experience for me going forward.
