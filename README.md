@@ -44,7 +44,7 @@ The fish nets and plankton were also objects and were generated in the same way 
 
 
 A `newOcean()` function was created in order to clear the cells from any game objects so that the game could be rebuilt between levels or when restarting the game.
-The sharks and fish were created using classes, in order that many could be produced with varying values (namely position and speed). I was particularly happy with this code due to the ease it gave to modifying the  difficulty of the levels. The shark class is in the below snippet:
+The sharks and fish were created using classes, in order that many could be produced with varying values (namely position and speed). I was particularly happy with this code due to the ease it gave to modifying the difficulty of the levels. The shark class is in the below snippet:
 #### Code Snippet 
 <img width="583" alt="Screenshot 2021-12-29 at 11 57 07" src="https://user-images.githubusercontent.com/89992629/147661815-ed76b05d-3a9a-41d4-b4e2-ac314c43bad1.png">
 
