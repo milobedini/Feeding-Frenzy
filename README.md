@@ -2,7 +2,7 @@
 
 # Overview
 Feeding Frenzy is an arcade-style aquatic game that took inspiration from the original version of 2004. The player’s fish must navigate the ocean and hunt down prey, whilst avoiding fishing nets and watching out for predators. The game consists of 3 levels of increasing difficulty.
-This was my first project with General Assembly and within development generally. Feeding Frenzy was built using Vanilla JavaScript (as well as HTML and CSS) over a one week period.
+This was my first project with General Assembly and within development generally. Feeding Frenzy was a solo project, built using Vanilla JavaScript (as well as HTML and CSS) over a one week period.
 
 ## Deployed -> [Feeding Frenzy](https://milobedini.github.io/Feeding-Frenzy/) 
 
