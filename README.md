@@ -85,7 +85,7 @@ The final day of the project was spent cleaning things up and styling the game. 
 * Initially I had some issues in how to create moving objects (the sharks and the fish), and to track where they were at all times to determine when they interacted with the player’s fish. As mentioned, this was solved by using classes which contained the shark object’s current position.
 
 # Bugs
-* There is an issue when the sharks move through the fish nets and the fish net temporarily disappears.
+* There is an issue when the sharks move through the fishnets and the fishnet temporarily disappears.
 * Very occasionally the game’s background (the ocean) will not load.
 
 # Future Improvements
